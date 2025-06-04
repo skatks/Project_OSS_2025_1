@@ -19,7 +19,7 @@ class Calculator:
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
             ['0', '.', 'C', '+'],
-            ['=']
+            ['=','$']
         ]
 
         for row in buttons:
@@ -37,6 +37,14 @@ class Calculator:
     def on_click(self, char):
         if char == 'C':
             self.expression = ""
+
+        elif char == '$':
+            if self.expression:
+                try:
+                    amount = float(self.expression)
+                    self.expression = f"{amount * 1400:.2f}원"
+                except ValueError:
+                    self.expression = "에러"
         elif char == '=':
             try:
                 self.expression = str(eval(self.expression))
