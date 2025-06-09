@@ -7,7 +7,7 @@ class Calculator:
         self.root.title("계산기")
         self.root.geometry("300x400")
 
-        self.expression = ""
+        self.expr = ""
 
         # 입력창
         self.entry = tk.Entry(root, font=("Arial", 24), justify="right")
@@ -15,6 +15,7 @@ class Calculator:
 
         # 버튼 생성
         buttons = [
+            ['(',')', 'CE','%'],
             ['7', '8', '9', '/'],
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
@@ -36,17 +37,19 @@ class Calculator:
 
     def on_click(self, char):
         if char == 'C':
-            self.expression = ""
+            self.expr = ""
+        elif char == 'CE':
+            self.expr = self.expr[:-1]
         elif char == '=':
             try:
-                self.expression = str(eval(self.expression))
+                self.expr = str(eval(self.expr))
             except Exception:
-                self.expression = "에러"
+                self.expr = "에러"
         else:
-            self.expression += str(char)
+            self.expr += str(char)
 
         self.entry.delete(0, tk.END)
-        self.entry.insert(tk.END, self.expression)
+        self.entry.insert(tk.END, self.expr)
 
 
 
