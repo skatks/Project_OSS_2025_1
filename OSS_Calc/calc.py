@@ -100,8 +100,3 @@ class Calculator:
         self.entry.delete(0, tk.END)
         self.entry.insert(tk.END, self.expr)
 
-# 실행
-if __name__ == "__main__":
-    root = tk.Tk()
-    calc = Calculator(root)
-    root.mainloop()
